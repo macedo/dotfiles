@@ -129,7 +129,7 @@ set encoding=utf8
 let base16colorspace=256  " Access colors present in 256 colorspace"
 set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors"
 set background=light
-colorscheme gotham
+colorscheme gotham256
 
 " set number " show line numbers
 " set relativenumber " show relative line numbers
@@ -432,7 +432,7 @@ let g:ctrlp_working_path_mode = 2
 let g:airline_powerline_fonts=1
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:airline_theme='gotham'
+let g:airline_theme='gotham256'
 
 " don't hide quotes in json files
 let g:vim_json_syntax_conceal = 0
