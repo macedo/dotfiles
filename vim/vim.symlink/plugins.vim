@@ -8,9 +8,9 @@ call plug#begin('~/.vim/plugged')
 "
 " colorschemes
 Plug 'chriskempson/base16-vim'
-Plug 'whatyouhide/vim-gotham'
 
 " utilities
+Plug 'rizzatti/dash.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons'
 Plug 'mileszs/ack.vim'

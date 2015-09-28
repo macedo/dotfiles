@@ -128,11 +128,11 @@ syntax on
 set encoding=utf8
 let base16colorspace=256  " Access colors present in 256 colorspace"
 set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors"
-set background=light
-colorscheme gotham256
+execute "set background=".$BACKGROUND
+execute "colorscheme ".$THEME
 
 " set number " show line numbers
-" set relativenumber " show relative line numbers
+set relativenumber " show relative line numbers
 set number " show the current line number"
 
 set wrap "turn on line wrapping
@@ -173,8 +173,6 @@ inoremap jk <esc>
 " markdown to html
 nmap <leader>md :%!markdown --html4tags <cr>
 
-" toggle between last open buffers
-nnoremap <leader><leader> <c-^>
 
 " remove extra whitespace
 nmap <leader><space> :%s/\s\+$<cr>
@@ -432,7 +430,7 @@ let g:ctrlp_working_path_mode = 2
 let g:airline_powerline_fonts=1
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:airline_theme='gotham256'
+let g:airline_theme='base16'
 
 " don't hide quotes in json files
 let g:vim_json_syntax_conceal = 0
@@ -451,3 +449,7 @@ if (has("gui_running"))
 endif
 
 call ApplyLocalSettings(expand('.'))
+
+" toggle between last open buffers
+nnoremap <leader><leader> <c-^>
+

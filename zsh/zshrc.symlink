@@ -47,3 +47,15 @@ fi
 if which rbenv > /dev/null; then
     eval "$(rbenv init - zsh)"
 fi
+
+# Base16 Shell
+if [ -z "$THEME" ]; then
+    export THEME="base16-solarized"
+fi
+
+if [ -z "$BACKGROUND" ]; then
+    export BACKGROUND="dark"
+fi
+
+BASE16_SHELL="$DOTFILES/.config/base16-shell/$THEME.$BACKGROUND.sh"
+source $BASE16_SHELL

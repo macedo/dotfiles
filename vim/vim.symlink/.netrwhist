@@ -1,4 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/Users/macedo'
 let g:netrw_dirhist_2='/Users/macedo/.dotfiles'
+let g:netrw_dirhist_3='/Users/macedo/Workspace/westfield/kiosk_service/lib/swagger'
+let g:netrw_dirhist_4='/Users/macedo/Workspace/go/src/github.com/macedo/category_service-go/config'
+let g:netrw_dirhist_5='/Users/macedo/Workspace/westfield/kiosk_service/lib/swagger'
+let g:netrw_dirhist_6='/Users/macedo/Workspace/westfield/kiosk_service/app/serializers/v2'
+let g:netrw_dirhist_7='/Users/macedo/Workspace/westfield/kiosk_service/lib/swagger'
