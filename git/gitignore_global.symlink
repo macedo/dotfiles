@@ -2,4 +2,9 @@
 *.swp
 .vimrc.local
 
-vendor
+/vendor
+
+.otto
+.ottoid
+
+/.bin

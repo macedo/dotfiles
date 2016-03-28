@@ -205,7 +205,7 @@ map <leader>eg :e! ~/.gitconfig<cr>
 noremap <space> :set hlsearch! hlsearch?<cr>
 
 " activate spell-checking alternatives
-nmap ;s :set invspell spelllang=en<cr>
+" nmap ;s :set invspell spelllang=en<cr>
 
 " toggle invisible characters
 set invlist
@@ -242,15 +242,15 @@ nnoremap <leader>/ "fyiw :/<c-r>f<cr>
 
 " inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
-map <leader>r :call RunCustomCommand()<cr>
+" map <leader>r :call RunCustomCommand()<cr>
 " map <leader>s :call SetCustomCommand()<cr>
 let g:silent_custom_command = 0
 
 " helpers for dealing with other people's code
-nmap \t :set ts=4 sts=4 sw=4 noet<cr>
-nmap \s :set ts=4 sts=4 sw=4 et<cr>
+" nmap \t :set ts=4 sts=4 sw=4 noet<cr>
+" nmap \s :set ts=4 sts=4 sw=4 et<cr>
 
-nmap <leader>w :setf textile<cr> :Goyo<cr>
+" nmap <leader>w :setf textile<cr> :Goyo<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Functions
@@ -291,26 +291,26 @@ function! ApplyLocalSettings(dirname)
 endfunction
 
 " smart tab completion
-function! Smart_TabComplete()
-    let line = getline('.')                         " current line
+" function! Smart_TabComplete()
+"     let line = getline('.')                         " current line
 
-    let substr = strpart(line, -1, col('.')+1)      " from the start of the current
-    " line to one character right
-    " of the cursor
-    let substr = matchstr(substr, '[^ \t]*$')       " word till cursor
-    if (strlen(substr)==0)                          " nothing to match on empty string
-        return '\<tab>'
-    endif
-    let has_period = match(substr, '\.') != -1      " position of period, if any
-    let has_slash = match(substr, '\/') != -1       " position of slash, if any
-    if (!has_period && !has_slash)
-        return '\<C-X>\<C-P>'                         " existing text matching
-    elseif ( has_slash )
-        return '\<C-X>\<C-F>'                         " file matching
-    else
-        return '\<C-X>\<C-O>'                         " plugin matching
-    endif
-endfunction
+"     let substr = strpart(line, -1, col('.')+1)      " from the start of the current
+"     " line to one character right
+"     " of the cursor
+"     let substr = matchstr(substr, '[^ \t]*$')       " word till cursor
+"     if (strlen(substr)==0)                          " nothing to match on empty string
+"         return '\<tab>'
+"     endif
+"     let has_period = match(substr, '\.') != -1      " position of period, if any
+"     let has_slash = match(substr, '\/') != -1       " position of slash, if any
+"     if (!has_period && !has_slash)
+"         return '\<C-X>\<C-P>'                         " existing text matching
+"     elseif ( has_slash )
+"         return '\<C-X>\<C-F>'                         " file matching
+"     else
+"         return '\<C-X>\<C-O>'                         " plugin matching
+"     endif
+" endfunction
 
 " execute a custom command
 function! RunCustomCommand()
@@ -381,15 +381,15 @@ nnoremap <silent> <leader>u :call HtmlUnEscape()<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " close NERDTree after a file is opened
-let g:NERDTreeQuitOnOpen=0
-" show hidden files in NERDTree
-let NERDTreeShowHidden=1
-" remove some files by extension
-let NERDTreeIgnore = ['\.js.map$']
+" let g:NERDTreeQuitOnOpen=0
+" " show hidden files in NERDTree
+" let NERDTreeShowHidden=1
+" " remove some files by extension
+" let NERDTreeIgnore = ['\.js.map$']
 " Toggle NERDTree
-nmap <silent> <leader>k :NERDTreeToggle<cr>
-" expand to the path of the file in the current buffer
-nmap <silent> <leader>y :NERDTreeFind<cr>
+" nmap <silent> <leader>k :NERDTreeToggle<cr>
+" " expand to the path of the file in the current buffer
+" nmap <silent> <leader>y :NERDTreeFind<cr>
 
 " map fuzzyfinder (CtrlP) plugin
 " nmap <silent> <leader>t :CtrlP<cr>
@@ -436,7 +436,7 @@ let g:airline_theme='base16'
 let g:vim_json_syntax_conceal = 0
 
 
-let g:SuperTabCrMapping = 0
+" let g:SuperTabCrMapping = 0
 
 if (has("gui_running"))
     set guioptions=egmrt

@@ -44,7 +44,7 @@ suspended_jobs() {
 
 precmd() {
     vcs_info
-    print -P '\n%F{207}%~'
+    print -P '\n%F{110}%~'
 }
 
 export PROMPT='%(?.%F{magenta}.%F{red})❯%f '
