@@ -4,8 +4,6 @@
     email = macedo.rafaelfernandes@gmail.com
 [github]
     user = macedo
-[init]
-    templatedir = ~/.dotfiles/git/templates
 [color]
     diff = auto
     status = auto
@@ -52,4 +50,5 @@
 	smudge = git-lfs smudge %f
 	required = true
 [alias]
+    lg = log --oneline --graph --decorate --all
 	sync = fetch origin && pull --rebase origin master

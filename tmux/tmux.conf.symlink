@@ -1,112 +1,64 @@
-set -g default-command "reattach-to-user-namespace -l zsh"
-# tmux display things in 256 colors
-set -g default-terminal "screen-256color"
-set -g status-utf8 on
+# Set vi key bindings mode
+set -g mode-keys vi
+set -g status-keys vi
 
-set -g history-limit 20000
+# Set new panes to open in current directory
+bind c new-window -c "#{pane_current_path}"
+bind '"' split-window -c "#{pane_current_path}"
+bind % split-window -h -c "#{pane_current_path}"
 
-# automatically renumber tmux windows
-set -g renumber-windows on
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'dracula/tmux'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
 
-# unbind default prefix and set it to Ctrl+a
-unbind C-b
-set -g prefix C-a
-bind C-a send-prefix
+# Config Dracula Theme
+set -g @dracula-show-fahrenheit false
+set -g @dracula-show-powerline true
+set -g @dracula-show-network false
+set -g @dracula-show-left-icon session
+set -g @dracula-cpu-usage true
+set -g @dracula-ram-usage true
+set -g @dracula-day-month true
+set -g @dracula-military-time true
+set -g @dracula-show-flags true 
 
-# for nested tmux sessions
-bind-key a send-prefix
+# Set 256 colors
+set -s default-terminal 'tmux-256color'
 
-# Activity Monitoring
-setw -g monitor-activity off
-set -g visual-activity off
+# switch panes using Alt-arrow without prefix
+bind -n M-Left select-pane -L
+bind -n M-Right select-pane -R
+bind -n M-Up select-pane -U
+bind -n M-Down select-pane -D
 
-# Rather than constraining window size to the maximum size of any client
-# connected to the *session*, constrain window size to the maximum size of any
-# client connected to *that window*. Much more reasonable.
-setw -g aggressive-resize on
+# swap windows with shift+arrow with prefix
+bind-key S-Left swap-window -t -1
+bind-key S-Right swap-window -t +1
 
-# make delay shorter
-set -sg escape-time 0
+# copy from tmux to clipboard
+bind-key -T copy-mode-vi y send-keys -X copy-pipe "xclip -r" \; display-message "Copied to selection"
+bind-key -T copy-mode-vi Y send-keys -X copy-pipe "xclip -r -selection clipboard" \; display-message "Copied to clipboard"
+bind-key C-p run-shell "xclip -o | tmux load-buffer - && tmux paste-buffer"
 
-# tile all windows
-unbind =
-bind = select-layout tiled
+# turn mouse on
+set -g mouse on
+# restore vim sessions
+set -g @resurrect-strategy-vim 'session'
+# restore panes
+set -g @resurrect-capture-pane-contents 'on'
+# restore last saved environment (automatically)
+set -g @continuum-restore 'on'
 
-# cycle through panes
-# unbind C-a
-# unbind o # this is the default key for cycling panes
-# bind ^A select-pane -t:.+
+# reload config file (change file location to your the tmux.conf you want to use)
+bind r source-file ~/.tmux.conf
 
-# make window/pane index start with 1
-set -g base-index 1
-setw -g pane-base-index 1
+# Other examples:
+# set -g @plugin 'github_username/plugin_name'
+# set -g @plugin 'git@github.com:user/plugin'
+# set -g @plugin 'git@bitbucket.com:user/plugin'
 
-# set-option -g set-titles on
-# set-option -g set-titles-string "#T - #W"
-# set-window-option -g automatic-rename on
-
-######################
-#### Key Bindings ####
-######################
-
-# reload config file
-bind r source-file ~/.tmux.conf \; display "Config Reloaded!"
-
-# quickly open a new window
-bind N new-window
-
-# split window and fix path for tmux 1.9
-bind | split-window -h -c "#{pane_current_path}"
-bind - split-window -v -c "#{pane_current_path}"
-
-# synchronize all panes in a window
-bind y setw synchronize-panes
-
-# pane movement shortcuts
-bind h select-pane -L
-bind j select-pane -D
-bind k select-pane -U
-bind l select-pane -R
-
-bind -r C-h select-window -t :-
-bind -r C-l select-window -t :+
-
-# Resize pane shortcuts
-bind -r H resize-pane -L 10
-bind -r J resize-pane -D 10
-bind -r K resize-pane -U 10
-bind -r L resize-pane -R 10
-
-# enable mouse support for switching panes/windows
-# NOTE: This breaks selecting/copying text on OSX
-# To select text as expected, hold Option to disable it (iTerm2)
-setw -g mode-mouse on
-set -g mouse-select-pane on
-set -g mouse-resize-pane on
-set -g mouse-select-window on
-
-# maximizing and restoring windows
-unbind Up
-bind Up new-window -d -n fullscreen \; swap-pane -s fullscreen.1 \; select-window -t fullscreen
-unbind Down
-bind Down last-window \; swap-pane -s fullscreen.1 \; kill-window -t fullscreen
-
-# set vi mode for copy mode
-setw -g mode-keys vi
-# more settings to make copy-mode more vim-like
-unbind [
-bind Escape copy-mode
-unbind p
-bind p paste-buffer
-bind -t vi-copy 'v' begin-selection
-bind -t vi-copy 'y' copy-selection
-
-# Buffers to/from Mac clipboard, yay tmux book from pragprog
-bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
-bind C-v run "tmux set-buffer $(reattach-to-user-namespace pbpaste); tmux paste-buffer"
-
-##############################
-### Color & Style Settings ###
-##############################
-
-source ~/.dotfiles/tmux/theme.sh
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'

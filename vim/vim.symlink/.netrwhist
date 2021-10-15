@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/Users/macedo/Workspace/separados_no_nascimento/.git'
-let g:netrw_dirhist_2='/Users/macedo/Workspace/westfield/people_access_service/app/queries'
-let g:netrw_dirhist_3='/Users/macedo/Workspace/westfield/staff_access_service/app/lib/api'
-let g:netrw_dirhist_4='/Users/macedo/Workspace/westfield/staff_access_service/app/models/service'
-let g:netrw_dirhist_5='/Users/macedo/Workspace/westfield/people_access_service/spec/controllers/v1/people'
-let g:netrw_dirhist_6='/Users/macedo/Workspace/westfield/people_access_service/spec/factories'
